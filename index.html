@@ -6,7 +6,6 @@
   <title>V2M — Motion → MIDI</title>
   <meta name="description" content="V2M — turning motion into melody. Personal explorations in converting video and live streams into MIDI." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --bg:#071022;
@@ -21,15 +20,15 @@
     .container{max-width:1100px;margin:30px auto;padding:22px}
 
     /* header */
-    header{display:flex;gap:16px;align-items:center}
-    .logo{width:72px;height:72px;border-radius:14px;background:var(--card);display:flex;align-items:center;justify-content:center}
-    .logo img{width:68%;height:auto}
+    header{display:flex;gap:18px;align-items:center}
+    .logo{width:120px;height:120px;border-radius:18px;background:var(--card);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .logo img{width:86%;height:auto}
     .title{line-height:1}
-    h1{margin:0;font-size:24px;letter-spacing:-0.3px}
+    h1{margin:0;font-size:26px;letter-spacing:-0.3px}
     p.lead{margin:6px 0 0 0;color:var(--muted);font-size:15px}
 
     /* layout */
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:22px;margin-top:18px;align-items:start}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:22px;margin-top:18px;align-items:start}
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
     .small{font-size:13px;color:var(--muted)}
 
@@ -53,20 +52,24 @@
 
     /* video layout */
     .video-section{margin-top:18px}
-    .video-grid{display:flex;gap:16px;flex-wrap:nowrap;justify-content:flex-start;align-items:flex-start}
+    .video-grid{display:flex;gap:16px;flex-wrap:nowrap;justify-content:flex-start;align-items:flex-start;margin-top:12px}
     .video-card{border-radius:12px;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,0.03)}
     .vert-9x16{width:320px;aspect-ratio:9/16;display:block;background:#000}
     .vert-9x16 video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
-    .video-caption{padding:8px 10px;font-size:13px;color:var(--muted);text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0))}
+    /* Remove captions under videos - user requested */
 
     /* sidebar */
     aside .card h4{margin:0 0 8px 0}
     .links a{display:block;color:var(--muted);text-decoration:none;margin-top:8px}
 
+    /* tech block */
+    .tech-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+    .tech-item{background:rgba(255,255,255,0.01);padding:8px;border-radius:8px;font-size:13px;color:var(--muted)}
+
     /* footer */
     footer{color:var(--muted);font-size:13px;margin-top:26px;text-align:center}
 
-    @media (max-width:880px){
+    @media (max-width:920px){
       .grid{grid-template-columns:1fr}
       .video-grid{flex-wrap:wrap;justify-content:center}
       .vert-9x16{width:180px}
@@ -80,7 +83,7 @@
       <div class="logo card"><img src="assets/v2mlogo.png" alt="V2M logo"></div>
       <div class="title">
         <h1>V2M — Turn Motion Into Music</h1>
-        <p class="lead">A personal project transforming real-world movement into playable melodies.</p>
+        <p class="lead">A personal project transforming movement in space into playable MIDI — live or from recorded video.</p>
       </div>
     </header>
 
@@ -91,11 +94,11 @@
         <!-- HERO SELL -->
         <section class="card hero-copy">
           <div class="hero-hype">Motion becomes melody</div>
-          <div class="hero-blurb">Drop a video or point a camera — V2M listens to movement and composes. Unexpected rhythms, new melodies, and instant inspiration from everyday motion.</div>
+          <div class="hero-blurb">Point a camera or drop a clip — V2M translates motion through space into MIDI notes you can record, export, or stream live into your DAW. It’s an instrument made from movement.</div>
 
           <div class="cta-row">
-            <a class="btn" href="https://www.tiktok.com" target="_blank" rel="noopener">Watch demos</a>
-            <a class="btn ghost" href="#" onclick="alert('Follow the journey on TikTok/Instagram')">Follow the journey</a>
+            <a class="btn" href="https://www.tiktok.com/@paramesos" target="_blank" rel="noopener">Watch demos (@paramesos)</a>
+            <a class="btn ghost" href="https://www.instagram.com/akindynosk" target="_blank" rel="noopener">Follow on IG (@akindynosk)</a>
           </div>
 
           <!-- gallery screenshots -->
@@ -103,20 +106,28 @@
             <div class="splash"><img src="assets/screenshot1.png" alt="V2M UI screenshot 1"></div>
             <div class="splash"><img src="assets/screenshot2.png" alt="V2M UI screenshot 2"></div>
           </div>
+
+          <!-- short selling bullets -->
+          <div style="margin-top:14px" class="small">
+            <ul style="padding-left:18px;margin:10px 0 0 0;color:var(--muted)">
+              <li>Instantly compose from real-world motion — birds, cars, people, shapes.</li>
+              <li>Use offline to export MIDI files or stream live into Ableton and other DAWs.</li>
+              <li>Designed as a creative experiment — explore new musical ideas from any scene.</li>
+            </ul>
+          </div>
         </section>
 
         <!-- DEMO VIDEOS -->
         <section class="card video-section">
           <h3 style="margin:0 0 10px 0">Demo videos</h3>
-          <p class="small">Two vertical demos — the kind of short clips you'd see on TikTok or Reels.</p>
+          <p class="small">Two vertical 9:16 demos shown side-by-side (ideal for TikTok/Reels).</p>
 
-          <div class="video-grid" style="margin-top:12px">
+          <div class="video-grid">
             <!-- VIDEO 1 -->
             <div class="video-card">
               <div class="vert-9x16">
                 <video id="v1" src="assets/motion2notes.mp4" muted playsinline loop autoplay></video>
               </div>
-              <div class="video-caption">Birds → melody</div>
             </div>
 
             <!-- VIDEO 2 -->
@@ -124,7 +135,6 @@
               <div class="vert-9x16">
                 <video id="v2" src="assets/V2M.mp4" muted playsinline loop autoplay></video>
               </div>
-              <div class="video-caption">Shapes → synth</div>
             </div>
           </div>
         </section>
@@ -134,21 +144,29 @@
       <!-- SIDEBAR -->
       <aside>
         <div class="card">
-          <h4>About this project</h4>
-          <p class="small">A creative experiment — I capture motion and convert it into MIDI so any visual can become music. Sharing demos, not selling software.</p>
+          <h4 style="margin:0 0 8px 0">About this project</h4>
+          <p class="small">A creative, non-commercial experiment exploring how visual motion maps to musical structure. Not a product — just experiments and demos.</p>
+
+          <div class="tech-list" aria-hidden="false">
+            <div class="tech-item"><strong>Core tech</strong>: Python + YOLOv8 (object detection) + DeepSORT (tracking)</div>
+            <div class="tech-item"><strong>Media & UI</strong>: OpenCV for video I/O & FFmpeg for exports; PySide6 for the desktop GUI</div>
+            <div class="tech-item"><strong>MIDI</strong>: real-time virtual MIDI port + MIDI file export (mido / python-rtmidi or similar)</div>
+            <div class="tech-item"><strong>Streaming</strong>: accepts webcams, RTSP/HTTP & YouTube Live — streams MIDI live to Ableton</div>
+            <div class="tech-item"><strong>How it maps</strong>: tracks object trajectories; axis crossings and position → note triggers and velocity mapping</div>
+          </div>
 
           <div style="margin-top:12px;border-top:1px solid rgba(255,255,255,0.02);padding-top:12px">
             <strong style="display:block;color:var(--muted)">Follow</strong>
             <div class="links">
-              <a href="#" title="TikTok">@yourhandle</a>
-              <a href="#" title="Instagram">@yourhandle</a>
+              <a href="https://www.tiktok.com/@paramesos" target="_blank" rel="noopener">@paramesos</a>
+              <a href="https://www.instagram.com/akindynosk" target="_blank" rel="noopener">@akindynosk</a>
             </div>
           </div>
         </div>
 
         <div style="margin-top:14px" class="card">
-          <h4>Why it matters</h4>
-          <p class="small">Use movement as an instrument — spark new ideas, create generative textures, or build live audiovisual performances.</p>
+          <h4 style="margin:0 0 8px 0">Where to use it</h4>
+          <p class="small">Generative composition, live performances, audiovisual installations, or just messing around with new sounds from everyday motion.</p>
         </div>
       </aside>
     </div>
