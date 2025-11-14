@@ -9,175 +9,99 @@
 
   <style>
     :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --muted:#94a3b8;
-      --accent:#34d399;
-      --glass:rgba(255,255,255,0.03);
-      --white:#ffffff;
+      --bg:#0f1724; --muted:#94a3b8; --white:#ffffff;
     }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:var(--white);background:linear-gradient(180deg,#0b1220,#071022);-webkit-font-smoothing:antialiased}
+    .container{max-width:1100px;margin:30px auto;padding:20px}
+    header{display:flex;gap:16px;align-items:center}
+    .logo{width:72px;height:72px;border-radius:12px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center}
+    .logo img{width:64%;height:auto}
+    h1{margin:0;font-size:24px}
+    p.lead{color:var(--muted);margin:6px 0 0 0}
 
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--white);background:linear-gradient(180deg,#0b1220 0%, #071022 100%);-webkit-font-smoothing:antialiased}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:22px;align-items:start}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .features{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+    .feature{font-size:13px;color:var(--muted);padding:8px;border-radius:8px;background:rgba(255,255,255,0.01)}
 
-    .container{max-width:1100px;margin:40px auto;padding:28px}
-    header{display:flex;align-items:center;gap:18px}
+    /* VIDEO LAYOUT: two vertical videos side-by-side */
+    .video-grid{display:flex;gap:16px;flex-wrap:nowrap;justify-content:flex-start;align-items:flex-start;margin-top:12px}
+    .video-card{display:flex;flex-direction:column;align-items:stretch;border-radius:12px;overflow:hidden;background:#020617;border:1px solid rgba(255,255,255,0.03)}
+    .vert-9x16{width:320px;aspect-ratio:9/16;display:block;background:#000}
+    .vert-9x16 video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+    .video-caption{padding:8px 10px;font-size:13px;color:var(--muted);text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0))}
 
-    .logo{width:84px;height:84px;background:var(--glass);display:flex;align-items:center;justify-content:center;border-radius:14px;overflow:hidden}
-    .logo img{width:72%;height:auto;display:block}
-
-    h1{font-size:28px;margin:0 0 4px 0}
-    p.lead{color:var(--muted);margin:0 0 18px 0}
-
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:28px;align-items:start}
-
-    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-
-    .features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .feature{padding:10px;border-radius:8px;background:rgba(255,255,255,0.01);font-size:14px;color:var(--muted)}
-
-    .screens{display:flex;flex-direction:column;gap:12px}
-    .screenshot{background:#071022;border-radius:10px;padding:8px;border:1px solid rgba(255,255,255,0.02)}
-    .screenshot img{width:100%;height:auto;display:block;border-radius:6px}
-
-    /* ------- VIDEO LAYOUT (best-practice) ------- */
-    .video-grid{
-      display:flex;
-      gap:20px;
-      flex-wrap:wrap;
-      justify-content:center; /* center the two videos */
-      align-items:flex-start;
-      margin-top:12px;
-    }
-
-    .video-card{
-      display:block;
-      border-radius:12px;
-      overflow:hidden;
-      background:#020617;
-      border:1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
-    }
-
-    /* Use aspect-ratio to guarantee exact 9:16 boxes */
-    .vert-9x16{
-      width:340px; /* base width on desktop; adjust to taste: 280 / 320 / 360 */
-      aspect-ratio: 9 / 16; /* ensures accurate 9:16 */
-      display:block;
-    }
-
-    /* Video fills the box but preserves full frame: contain (letterbox) */
-    .video-card video{
-      width:100%;
-      height:100%;
-      object-fit:contain; /* use 'cover' if you prefer fill-with-crop */
-      display:block;
-      background:#000;
-    }
-
-    /* small caption underneath (optional) */
-    .video-caption{
-      padding:10px 12px;
-      font-size:13px;
-      color:var(--muted);
-      text-align:center;
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-    }
-
-    .meta{margin-top:18px;color:var(--muted);font-size:13px}
-    footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
-
-    @media (max-width:900px){
-      .grid{grid-template-columns:1fr;}
+    /* Responsive: stack on small screens */
+    @media (max-width:760px){
+      .grid{grid-template-columns:1fr}
+      .video-grid{flex-wrap:wrap;justify-content:center}
       .vert-9x16{width:180px}
-      .video-grid{gap:12px}
     }
 
+    .meta{color:var(--muted);font-size:13px;margin-top:8px}
+    footer{color:var(--muted);font-size:13px;margin-top:26px;text-align:center}
   </style>
 </head>
-
 <body>
   <div class="container">
-
-    <!-- HEADER -->
     <header>
-      <div class="logo card">
-        <img src="assets/v2mlogo.png" alt="V2M logo"/>
-      </div>
+      <div class="logo card"><img src="assets/v2mlogo.png" alt="V2M logo"></div>
       <div>
         <h1>V2M — Turn Motion Into Music</h1>
-        <p class="lead">A personal project that converts video and live streams into MIDI using computer vision.</p>
-        <p class="meta">(No downloads yet — just sharing experiments.)</p>
+        <p class="lead">A personal project converting motion into MIDI. (No downloads yet.)</p>
       </div>
     </header>
 
     <div class="grid">
-      <!-- MAIN -->
       <main>
-
-        <!-- HOW IT WORKS -->
         <section class="card">
           <h3 style="margin:0 0 8px 0">How it works</h3>
           <p class="meta">Load a video or camera → YOLO detects objects → DeepSORT tracks them → Axis crossings become MIDI notes.</p>
 
-          <div style="margin-top:14px" class="features">
+          <div class="features">
             <div class="feature">Video → MIDI export</div>
             <div class="feature">Live → Ableton MIDI out</div>
             <div class="feature">Scale & note control</div>
             <div class="feature">Debug video recording</div>
           </div>
 
-          <div style="margin-top:18px" class="screens">
-            <div class="screenshot">
-              <img src="assets/screenshot1.png" alt="V2M screenshot 1"/>
-            </div>
-            <div class="screenshot">
-              <img src="assets/screenshot2.png" alt="V2M screenshot 2"/>
-            </div>
-          </div>
-        </section>
+          <div style="margin-top:18px" class="card">
+            <h4 style="margin:0 0 8px 0">Demo videos</h4>
+            <p class="meta">Two vertical 9:16 demos shown side-by-side. Autoplay muted where supported.</p>
 
-        <!-- DEMO VIDEOS: two verticals side-by-side -->
-        <section style="margin-top:18px" class="card">
-          <h3 style="margin:0 0 8px 0">Demo videos</h3>
-          <p class="meta">Two vertical 9:16 demos shown side-by-side. Posters used where available for instant preview.</p>
-
-          <div class="video-grid">
-
-            <!-- vertical demo #1 -->
-            <div class="video-card">
-              <!-- NOTE: recommended file name: motion2notes_720x1280.mp4 (H.264 baseline). If you haven't re-encoded, keep current filename. -->
-              <div class="vert-9x16">
-                <video src="assets/motion2notes_720x1280.mp4" muted loop playsinline autoplay poster="assets/poster-vertical-1.png"></video>
+            <div class="video-grid">
+              <!-- VIDEO 1 -->
+              <div class="video-card">
+                <div class="vert-9x16">
+                  <video id="v1" src="assets/motion2notes.mp4" muted playsinline loop autoplay></video>
+                </div>
+                <div class="video-caption">Birds → melody</div>
               </div>
-              <div class="video-caption">Birds → melody</div>
-            </div>
 
-            <!-- vertical demo #2 -->
-            <div class="video-card">
-              <div class="vert-9x16">
-                <video src="assets/V2M_720x1280.mp4" muted loop playsinline autoplay poster="assets/poster-vertical-2.png"></video>
+              <!-- VIDEO 2 -->
+              <div class="video-card">
+                <div class="vert-9x16">
+                  <video id="v2" src="assets/V2M.mp4" muted playsinline loop autoplay></video>
+                </div>
+                <div class="video-caption">Shapes → synth</div>
               </div>
-              <div class="video-caption">Shapes → synth</div>
             </div>
 
           </div>
         </section>
-
       </main>
 
-      <!-- SIDEBAR -->
       <aside>
         <div class="card">
-          <h4 style="margin:0 0 10px 0">Follow the journey</h4>
-          <p class="meta">This is an early personal project — more experiments coming soon.</p>
-          <div style="margin-top:14px;border-top:1px solid rgba(255,255,255,0.02);padding-top:12px">
-            <strong style="display:block">Links</strong>
-            <a href="#" style="color:var(--muted);text-decoration:none;display:block;margin-top:8px">TikTok / @yourhandle</a>
+          <h4 style="margin:0 0 8px 0">Follow the journey</h4>
+          <p class="meta">Personal experiments — more demos coming soon.</p>
+          <div style="margin-top:12px;border-top:1px solid rgba(255,255,255,0.02);padding-top:10px">
+            <a href="#" style="color:var(--muted);text-decoration:none;display:block;margin-top:6px">TikTok / @yourhandle</a>
             <a href="#" style="color:var(--muted);text-decoration:none;display:block;margin-top:6px">Instagram / @yourhandle</a>
           </div>
         </div>
 
-        <div style="margin-top:16px" class="card">
+        <div style="margin-top:14px" class="card">
           <h4 style="margin:0 0 8px 0">Tech</h4>
           <p class="meta">YOLOv8 • DeepSORT • PySide6 • OpenCV • mido • python-rtmidi</p>
           <p class="meta" style="margin-top:8px">macOS standalone (personal project)</p>
@@ -185,10 +109,29 @@
       </aside>
     </div>
 
-    <footer>
-      Built as a personal project — turning motion into music. • <span style="opacity:.8">V2M Studio</span>
-    </footer>
-
+    <footer>Built as a personal project — turning motion into music. • V2M Studio</footer>
   </div>
+
+  <script>
+    // Try programmatic playback (muted) to improve autoplay reliability.
+    (function(){
+      const vids = [document.getElementById('v1'), document.getElementById('v2')].filter(Boolean);
+      vids.forEach(v => {
+        // Ensure muted (some browsers block autoplay without muted)
+        try { v.muted = true; } catch(e) {}
+        // Attempt to play; ignore errors gracefully
+        const p = v.play();
+        if (p !== undefined) {
+          p.then(()=> {
+            // playing
+          }).catch(err=>{
+            console.warn('Autoplay prevented for video:', v.id, err);
+            // show controls as fallback so user can start playback
+            v.setAttribute('controls', 'controls');
+          });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
